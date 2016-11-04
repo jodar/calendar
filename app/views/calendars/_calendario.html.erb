@@ -1,0 +1,54 @@
+<% ano = 2016 %>
+<% mes = 11 %>
+
+<% max_colunas = 6 %>
+<% dias_no_mes = Date.new(ano, mes, -1).mday %>
+<% col_atual = 0 %>
+<% dia_na_semana = Date.new(ano, mes, 1).wday %>
+
+<table class="calendario">
+  <tr class="semana">
+    <td class="tit_dia">Domingo</td>
+    <td class="tit_dia">Segunda</td>
+    <td class="tit_dia">Terça</td>
+    <td class="tit_dia">Quarta</td>
+    <td class="tit_dia">Quinta</td>
+    <td class="tit_dia">Sexta</td>
+    <td class="tit_dia">Sábado</td>
+  </tr>
+
+  <tr>
+    <% i = 0 %>
+    <% tmp = 0 %>
+
+    <% while true %>
+      <% if col_atual > max_colunas %>
+        </tr><tr>
+        <% col_atual = 0 %>
+      <% end %>
+
+      <% if col_atual == dia_na_semana %>
+        <% i = 1 %>
+      <% end %>
+
+      <% if i <= dias_no_mes %>
+        <td class="day">
+          <% if i > 0 %>
+            <%= i %>
+            <br />
+          <% end %>
+        </td>
+      <% else %>
+        <% colspan = 7 - col_atual %>
+        <td colspan="<%= colspan %>"></td>
+      <% end %>
+
+      <% col_atual += 1 %>
+      <% tmp += 1 %>
+
+      <% if i > dias_no_mes %>
+        <% break %>
+      <% end %>
+
+      <% i += 1 if i > 0 %>
+    <% end %> 

@@ -1,0 +1,33 @@
+<% while true %>
+
+      <% if current_col > max_cols %>
+        </tr><tr>
+        <% current_col = 0 %>
+      <% end %>
+
+      <% if i == 0 && current_col == day_in_week %>
+        <% i = 1 %>
+      <% end %>
+
+      <% if i <= days_in_month %>
+        <% # HERE IS THE ACTUAL DAY %>
+        <td class="day day_<%= i %>" valign="top">
+          <% if i > 0 %>
+            <%= i %>
+            <br />
+          <% end %>
+        </td>
+      <% else %>
+        <% colspan = 7 - current_col %>
+        <td colspan="<%= colspan %>"></td>
+      <% end %>
+
+      <% current_col += 1 %>
+      <% tmp += 1 %>
+
+      <% if tmp > 40 || i > days_in_month %>
+        <% break %>
+      <% end %>
+
+      <% i += 1 if i > 0 %>
+    <% end %>
