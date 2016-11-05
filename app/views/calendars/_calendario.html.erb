@@ -27,12 +27,12 @@
         <% col_atual = 0 %>
       <% end %>
 
-      <% if col_atual == dia_na_semana %>
+      <% if i == 0 && dia_na_semana == col_atual %>
         <% i = 1 %>
       <% end %>
 
       <% if i <= dias_no_mes %>
-        <td class="day">
+        <td class="dia">
           <% if i > 0 %>
             <%= i %>
             <br />
@@ -40,13 +40,13 @@
         </td>
       <% else %>
         <% colspan = 7 - col_atual %>
-        <td colspan="<%= colspan %>"></td>
+        <td ></td>
       <% end %>
-
+      
       <% col_atual += 1 %>
       <% tmp += 1 %>
 
-      <% if i > dias_no_mes %>
+      <% if i > dias_no_mes || tmp > 32  %>
         <% break %>
       <% end %>
 
